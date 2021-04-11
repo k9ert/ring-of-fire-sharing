@@ -2,11 +2,13 @@ echo "{"
 
 node_info=$(lncli getinfo)
 my_node_id=$(echo "$node_info" | jq -r '.identity_pubkey')
+alias=$(echo "$node_info" | jq -r '.alias')
 color=$(echo "$node_info" | jq -r '.color')
 feeReport=$(lncli feereport | jq -r '.')
 peers=$(jq -c '.peers[]' ringOfFireConfig.json)
 
 echo "\"nodeId\":\"${my_node_id}\","
+echo "\"alias\":\"${alias}\","
 echo "\"color\":\"${color}\","
 echo "\"feeReport\":${feeReport},"
 
