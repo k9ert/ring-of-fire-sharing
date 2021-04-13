@@ -1,8 +1,12 @@
+#!/bin/bash
+
+dir=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+cd "$dir"
 
 user=$(jq -c '.auth.user' ringOfFireConfig.json | tr -d '"')
 password=$(jq -c '.auth.password' ringOfFireConfig.json | tr -d '"')
 url=$(jq -c '.url' ringOfFireConfig.json | tr -d '"')
-ringStats=$(. getRingStats.sh | jq -r -c '.')
+ringStats=$(. ./getRingStats.sh | jq -r -c '.')
 
 while true
 do
